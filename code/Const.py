@@ -1,0 +1,13 @@
+WIN_WIDTH = 1152
+WIN_HEIGHT = 648
+
+
+MENU_OPTION = ("JOGAR",
+               "SCORE",
+               "SAIR",)
+
+COLOR_ORAGE = (255, 128, 0)
+COLOR_WHITE = (255, 255, 255)
+COLOR_YELLOW = (255, 255, 0)
+C_GREEN = (0, 128, 0)
+C_CYAN = (0, 128, 128)

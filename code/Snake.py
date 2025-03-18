@@ -31,16 +31,16 @@ class Snake:
         self.body.insert(0, new_head)
 
 
-        def update(self):
-            if self.alive:
-                self.move()
-                self.body.pop # Remove a �ltima parte do corpo para simular movimento
+    def to_update_snake(self):
+        if self.alive:
+            self.move()
+            self.body.pop # Remove a �ltima parte do corpo para simular movimento
 
-        def change_direction(self, direction):
-            oposts = {'UP': 'DOWN', 'DOWN': 'UP', 'LEFT': 'RIGHT', 'RIGHT': 'LEFT'}
-            if direction != oposts.get(self.direction, ""):
-                self.direction = direction
+    def change_direction(self, direction):
+        oposts = {'UP': 'DOWN', 'DOWN': 'UP', 'LEFT': 'RIGHT', 'RIGHT': 'LEFT'}
+        if direction != oposts.get(self.direction, ""):
+            self.direction = direction
 
-        def draw(self, windown):
-            for block in self.body:
-                pygame.draw.rect(windown, C_GREEN, (*block, BLOCK_SIZE, BLOCK_SIZE))
+    def draw_snake(self, windown):
+        for block in self.body:
+            pygame.draw.rect(windown, C_GREEN, (*block, BLOCK_SIZE, BLOCK_SIZE))

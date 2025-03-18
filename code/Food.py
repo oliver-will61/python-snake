@@ -12,4 +12,4 @@ class Food:
             random.randint(0, (WIN_HEIGHT // BLOCK_SIZE) -1 )* BLOCK_SIZE
         ]
     def draw_food(self, windown):
-        pygame.draw.rect(windown, C_RED, *self.position, BLOCK_SIZE, BLOCK_SIZE)
+        pygame.draw.rect(windown, C_RED, (*self.position, BLOCK_SIZE, BLOCK_SIZE))

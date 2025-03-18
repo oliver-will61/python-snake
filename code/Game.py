@@ -1,5 +1,5 @@
 import pygame
-from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
+from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, C_BLACK
 from code.Menu import Menu
 from code.Snake import Snake
 from code.Food import Food
@@ -23,7 +23,7 @@ class Game():
                 print('jogo inicinado')
 
                 self.events()
-                self.update()
+                self.to_update()
                 self.draw()
 
            
@@ -48,6 +48,31 @@ class Game():
                     self.snake.change_direction('LEFT')
                 elif event.key  == pygame.K_RIGHT:
                     self.snake.change_direction('RIGHT')
+    
+    def to_update (self):
+        if self.snake.alive:
+            self.snake.to_update_snake()
 
+            #verifica se comeu a comida
+
+            if self.snake.body[0] == self.food.position:
+                self.food.new_position()
+                self.snake.body.append(self.snake.body[-1])  # Cresce
+            
+            # verifica colisão com a parede
+            x, y = self.snake.body[0]
+            if x < 0 or x >= WIN_WIDTH or y < 0 or y >= WIN_HEIGHT:
+                self.snake.alive = False
+        
+        else:
+            self.reset()
+
+    def draw(self):
+        self.window.fill(C_BLACK)
+        self.snake.draw_snake(self.window)
+        self.food.draw_food(self.window)
+        pygame.display.flip()
+
+    
 
             

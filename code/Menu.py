@@ -2,7 +2,7 @@ from pygame.font import Font
 from pygame import Surface
 from pygame import Rect
 import pygame
-from code.Const import COLOR_ORAGE, WIN_WIDTH
+from code.Const import C_ORAGE, WIN_WIDTH, MENU_OPTION, C_YELLOW, C_WHITE
 
 
 class Menu():
@@ -10,10 +10,46 @@ class Menu():
         self.window = window
 
     def run(self):
+        menu_option = 0
 
         while True:
-            self.menu_text(50, "Python Snake", COLOR_ORAGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(50, "Python Snake", C_ORAGE, ((WIN_WIDTH / 2), 120))
             pygame.display.flip()
+
+
+            for i in range(len(MENU_OPTION)):
+                if i == menu_option:
+                    self.menu_text(40, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
+                else:
+                    self.menu_text(40, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+
+
+            #checa os eventos
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+                if event.type == pygame.KEYDOWN:
+
+                    if event.key == pygame.K_DOWN:
+                        if menu_option < len(MENU_OPTION) -1:
+                            menu_option += 1
+                        else:                        
+                            menu_option = 0
+
+                    if event.key == pygame.K_UP:
+                        if menu_option > 0:
+                            menu_option -= 1
+                        
+                        else:
+                            menu_option = len(MENU_OPTION)-1 
+
+                    if event.key == pygame.K_RETURN:
+                        return MENU_OPTION[menu_option]
+            pygame.display.flip()
+
 
     
 

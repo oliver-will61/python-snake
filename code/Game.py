@@ -34,7 +34,7 @@ class Game():
                 quit()
 
     def reset(self):
-        self.snale = Snake()
+        self.snake = Snake()
         self.food = Food()
 
     def events(self):
@@ -43,11 +43,11 @@ class Game():
                 if event.key == pygame.K_UP:
                     self.snake.change_direction('UP') 
                 elif event.key  == pygame.K_DOWN:
-                    self.snale.change_direction('DOWN')
+                    self.snake.change_direction('DOWN')
                 elif event.key  == pygame.K_LEFT:
-                    self.snale.change_direction('LEFT')
+                    self.snake.change_direction('LEFT')
                 elif event.key  == pygame.K_RIGHT:
-                    self.snale.change_direction('RIGHT')
+                    self.snake.change_direction('RIGHT')
 
 
             

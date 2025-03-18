@@ -36,7 +36,7 @@ class Snake:
                 self.move()
                 self.body.pop # Remove a �ltima parte do corpo para simular movimento
 
-        def chage_direction(self, direction):
+        def change_direction(self, direction):
             oposts = {'UP': 'DOWN', 'DOWN': 'UP', 'LEFT': 'RIGHT', 'RIGHT': 'LEFT'}
             if direction != oposts.get(self.direction, ""):
                 self.direction = direction

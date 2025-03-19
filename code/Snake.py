@@ -34,7 +34,7 @@ class Snake:
     def to_update_snake(self):
         if self.alive:
             self.move()
-            self.body.pop # Remove a �ltima parte do corpo para simular movimento
+            self.body.pop() # Remove a �ltima parte do corpo para simular movimento
 
     def change_direction(self, direction):
         oposts = {'UP': 'DOWN', 'DOWN': 'UP', 'LEFT': 'RIGHT', 'RIGHT': 'LEFT'}
@@ -43,4 +43,4 @@ class Snake:
 
     def draw_snake(self, windown):
         for block in self.body:
-            pygame.draw.rect(windown, C_GREEN, (*block, BLOCK_SIZE, BLOCK_SIZE))
+            pygame.draw.rect(windown, C_GREEN, (*block, BLOCK_SIZE, BLOCK_SIZE)) #*block desempacota a tupla block

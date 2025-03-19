@@ -2,25 +2,25 @@ from pygame import Surface, Rect
 import pygame
 from code.Snake import Snake
 from code.Food import Food
-from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, C_BLACK
+from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, C_BLACK, SNAKE_VELOCITY
 
 
 class Level:
-    def __init__(self, window: Surface):
+    def __init__(self, window: Surface):   
         self.window = window
+        self.clock = pygame.time.Clock()    
         self.reset()
 
+    def reset(self):
+        self.snake = Snake()
+        self.food = Food()
 
     def level_run(self):
         while True:
             self.events()
             self.to_update()
             self.draw()
-
-
-    def reset(self):
-            self.snake = Snake()
-            self.food = Food()
+            self.clock.tick(SNAKE_VELOCITY) # defini o fps do jogo
 
     def events(self):
         for event in pygame.event.get():

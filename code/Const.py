@@ -1,6 +1,6 @@
-WIN_WIDTH = 1152
-WIN_HEIGHT = 648
-BLOCK_SIZE = 20
+WIN_WIDTH = 1160
+WIN_HEIGHT = 660
+BLOCK_SIZE = 20 # tamanho da cobra e da comida
 
 MENU_OPTION = ("JOGAR",
                "SCORE",

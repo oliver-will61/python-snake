@@ -3,7 +3,7 @@ import pygame
 
 class Snake:
     def __init__(self):
-        self.body = [[100, 100]]
+        self.body = [[100, 100]] #posição inicial da cobra
         self.direction = 'RIGHT'
         self.alive = True
 

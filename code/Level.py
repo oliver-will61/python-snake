@@ -2,12 +2,14 @@ from pygame import Surface, Rect
 import pygame
 from code.Snake import Snake
 from code.Food import Food
-from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, C_BLACK, SNAKE_VELOCITY
+from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, C_BLACK, SNAKE_VELOCITY, PATH_BG_IMAGEM
 
 
 class Level:
     def __init__(self, window: Surface):   
         self.window = window
+        self.bg_imagem = pygame.image.load(PATH_BG_IMAGEM).convert_alpha() #carega a imagem
+        self.background = pygame.transform.scale(self.bg_imagem, (WIN_WIDTH, WIN_HEIGHT))  # Ajusta a imagem ao tamanho da tela
         self.clock = pygame.time.Clock()    
         self.reset()
 
@@ -53,7 +55,7 @@ class Level:
             self.reset()
 
     def draw(self):
-        self.window.fill(C_BLACK)
+        self.window.blit(self.background, (0,0))
         self.snake.draw_snake(self.window)
         self.food.draw_food(self.window)
         pygame.display.flip()

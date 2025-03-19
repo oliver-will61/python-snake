@@ -14,3 +14,6 @@ C_RED = (255, 0, 0)
 C_BLACK = (0,0,0)
 
 SNAKE_VELOCITY = 10
+
+
+PATH_BG_IMAGEM = './assets/bg.jpg'

@@ -1,5 +1,14 @@
 WIN_WIDTH = 1160
 WIN_HEIGHT = 660
+
+HUD = {
+    'hud_x': 0,
+    'hud_y':0,
+    'hud_width': WIN_WIDTH,
+    'hud_height': 40
+} 
+
+
 BLOCK_SIZE = 20 # tamanho da cobra e da comida
 
 MENU_OPTION = ("JOGAR",

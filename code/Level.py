@@ -1,8 +1,9 @@
-from pygame import Surface, Rect
+from pygame import Surface, Rect 
+from pygame.font import Font
 import pygame
 from code.Snake import Snake
 from code.Food import Food
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE, HUD
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE, HUD, C_BLACK, FONT_SIZE_SCORE
 
 
 class Level:
@@ -12,12 +13,16 @@ class Level:
         self.background = pygame.transform.scale(self.bg_imagem, (WIN_WIDTH, WIN_HEIGHT))  # Ajusta a imagem ao tamanho da tela
         self.clock = pygame.time.Clock()    
         self.reset()
+        self.score = 0
+        self.best_score = 0
 
     def reset(self):
         self.snake = Snake()
         self.food = Food()
 
     def level_run(self):
+        pygame.mixer_music.load('./assets/audio/level_sound.wav')
+        pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
         while True:
             self.events()
             self.to_update()
@@ -74,6 +79,9 @@ class Level:
             #verifica se comeu a comida
 
             if self.snake.body[0] == self.food.position:
+                eat_sound = pygame.mixer.Sound('./assets/audio/eat.wav')
+                eat_sound.play()
+                self.score += 1
                 self.food.relocate()
                 self.snake.body.append(self.snake.body[-1])  # Cresce
         
@@ -82,11 +90,21 @@ class Level:
 
     def draw(self):
         self.window.blit(self.background, (0,0))
-        self.draw_hud(self.window)
+        self.hud(self.window)
         self.snake.draw_snake(self.window)
         self.food.draw_food(self.window)
         pygame.display.flip()
 
-    def draw_hud(self, window):
+    def hud(self, window):
         #desenha retangulo que vai ser usado como hud
         pygame.draw.rect(window, C_GREEN, (HUD['hud_x'],HUD['hud_y'], HUD['hud_width'], HUD['hud_height']))
+        self.level_text(FONT_SIZE_SCORE, f'Pontuação: {self.score}', C_BLACK, (20,(HUD['hud_height']/2)-(FONT_SIZE_SCORE/2)))
+
+
+
+    def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
+        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
+        self.window.blit(source=text_surf, dest=text_rect)
+        

@@ -2,7 +2,7 @@ from pygame import Surface, Rect
 import pygame
 from code.Snake import Snake
 from code.Food import Food
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE, HUD
 
 
 class Level:
@@ -57,10 +57,10 @@ class Level:
                 
             elif y >= WIN_HEIGHT:
                 print(f'Y maior ou igual a 660 - Y:{y}')
-                y = 0   # O -20 do block serve para compesar a andada da cobra
+                y = HUD['hud_height']   # O -20 do block serve para compesar a andada da cobra
                 print(f'Valor de Y agora é: {y}')
                 
-            elif y < 0:
+            elif y < HUD['hud_height']:
                 print(f'Y menor que 0 - Y :{y}')
                 y = WIN_HEIGHT - BLOCK_SIZE 
                 print(f'Valor de Y agora é: {y}')
@@ -74,7 +74,7 @@ class Level:
             #verifica se comeu a comida
 
             if self.snake.body[0] == self.food.position:
-                self.food.new_position()
+                self.food.relocate()
                 self.snake.body.append(self.snake.body[-1])  # Cresce
         
         else:

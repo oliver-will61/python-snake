@@ -4,7 +4,7 @@ from code.Const import WIN_WIDTH, BLOCK_SIZE, WIN_HEIGHT, C_RED, HUD
 
 class Food:
     def __init__(self):
-        self.position = self.new_position()
+        self.position = list(self.new_position())
 
     def new_position(self):
         
@@ -19,3 +19,6 @@ class Food:
         
     def draw_food(self, windown):
         pygame.draw.rect(windown, C_RED, pygame.Rect(self.position[0],self.position[1], BLOCK_SIZE, BLOCK_SIZE))
+
+    def relocate(self):
+        self.position = list(self.new_position())

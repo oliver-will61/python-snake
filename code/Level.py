@@ -34,12 +34,16 @@ class Level:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     self.snake.change_direction('UP') 
+                    self.obj_sound('./assets/audio/direction.mp3')
                 elif event.key  == pygame.K_DOWN:
                     self.snake.change_direction('DOWN')
+                    self.obj_sound('./assets/audio/direction.mp3')
                 elif event.key  == pygame.K_LEFT:
                     self.snake.change_direction('LEFT')
+                    self.obj_sound('./assets/audio/direction.mp3')
                 elif event.key  == pygame.K_RIGHT:
                     self.snake.change_direction('RIGHT')
+                    self.obj_sound('./assets/audio/direction.mp3')
     
     def to_update (self):
         if self.snake.alive:
@@ -47,28 +51,19 @@ class Level:
             
             # verifica colisão com a parede
             x, y = self.snake.body[0]
-            print(x, y)
 
             if x >= WIN_WIDTH:
-                print(f'X maior ou igual a 1160 - X:{x}')
-                x = 0 # O -20 do block serve para compesar a andada da cobra
-                print(f'Valor de X agora é: {x}')
+                x = 0 
                 
             elif x < 0:
-                print(f'X menor que 0 - X:{x}')
                 x = WIN_WIDTH - BLOCK_SIZE 
-                print(f'Valor de X agora é: {x}')
 
                 
             elif y >= WIN_HEIGHT:
-                print(f'Y maior ou igual a 660 - Y:{y}')
-                y = HUD['hud_height']   # O -20 do block serve para compesar a andada da cobra
-                print(f'Valor de Y agora é: {y}')
+                y = HUD['hud_height']   
                 
             elif y < HUD['hud_height']:
-                print(f'Y menor que 0 - Y :{y}')
                 y = WIN_HEIGHT - BLOCK_SIZE 
-                print(f'Valor de Y agora é: {y}')
                 
 
             x = (x // BLOCK_SIZE) * BLOCK_SIZE # '//' faz a divisão inteira garantido que o block_size seja sempre um número multiplo de 20
@@ -79,8 +74,7 @@ class Level:
             #verifica se comeu a comida
 
             if self.snake.body[0] == self.food.position:
-                eat_sound = pygame.mixer.Sound('./assets/audio/eat.wav')
-                eat_sound.play()
+                self.obj_sound('./assets/audio/eat.wav') # som da pontuação 
                 self.score += 1
                 self.food.relocate()
                 self.snake.body.append(self.snake.body[-1])  # Cresce
@@ -98,7 +92,13 @@ class Level:
     def hud(self, window):
         #desenha retangulo que vai ser usado como hud
         pygame.draw.rect(window, C_GREEN, (HUD['hud_x'],HUD['hud_y'], HUD['hud_width'], HUD['hud_height']))
-        self.level_text(FONT_SIZE_SCORE, f'Pontuação: {self.score}', C_BLACK, (20,(HUD['hud_height']/2)-(FONT_SIZE_SCORE/2)))
+
+        center_y = (HUD['hud_height']/2) - (FONT_SIZE_SCORE / 2)
+        margin_left = 20
+        margin_top = 10
+        margin_botton = 17
+        self.level_text(FONT_SIZE_SCORE, f'Pontuação: {self.score} ', C_BLACK, (margin_left,center_y - margin_top))
+        self.level_text(FONT_SIZE_SCORE, f'Melhor Pontuação: {self.best_score}', C_BLACK, (margin_left,center_y + margin_botton))
 
 
 
@@ -108,3 +108,6 @@ class Level:
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
         
+    def obj_sound(self, path_sound):
+        sound = pygame.mixer.Sound(path_sound)
+        sound.play()

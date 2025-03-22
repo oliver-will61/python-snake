@@ -3,7 +3,7 @@ from pygame import Surface
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE, HUD, C_BLACK, FONT_SIZE_SCORE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE, HUD
 
 
 class Level:
@@ -79,6 +79,7 @@ class Level:
                 self.snake.body.append(self.snake.body[-1])  # Cresce
         
         else:
+            self.score.update_best_score()
             self.reset()
 
     def draw(self):

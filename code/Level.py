@@ -43,6 +43,13 @@ class Level:
                 elif event.key  == pygame.K_RIGHT:
                     self.snake.change_direction('RIGHT')
                     self.obj_sound('./assets/audio/direction.mp3')
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    quit()
+                elif event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
     
     def to_update (self):
         if self.snake.alive:
@@ -51,23 +58,9 @@ class Level:
             # verifica colisão com a parede
             x, y = self.snake.body[0]
 
-            if x >= WIN_WIDTH:
-                x = 0 
-                
-            elif x < 0:
-                x = WIN_WIDTH - BLOCK_SIZE 
-
-                
-            elif y >= WIN_HEIGHT:
-                y = HUD['hud_height']   
-                
-            elif y < HUD['hud_height']:
-                y = WIN_HEIGHT - BLOCK_SIZE 
-                
-
-            x = (x // BLOCK_SIZE) * BLOCK_SIZE # '//' faz a divisão inteira garantido que o block_size seja sempre um número multiplo de 20
-            y = (y // BLOCK_SIZE) * BLOCK_SIZE # Necessário para a cobra não perder o alinhamento com o grid, caso o contrário ele vai passar por cima da comida
-            
+            if x >= WIN_WIDTH or x < 0 or  y >= WIN_HEIGHT or y < HUD['hud_height']:
+                self.snake.alive = False
+                 
             self.snake.body[0] = [x,y]
 
             #verifica se comeu a comida

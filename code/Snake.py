@@ -5,7 +5,7 @@ class Snake:
     def __init__(self):
         self.body = [[100, 100]] #posição inicial da cobra
         self.direction = 'RIGHT'
-        self.alive = True
+        self.collision = False
 
     def move(self):
         x, y = self.body[0]
@@ -25,14 +25,14 @@ class Snake:
         #verifica colisão
 
         if new_head in self.body:
-            self.alive = False
+            self.collision = True
             return
         
         self.body.insert(0, new_head)
 
 
     def to_update_snake(self):
-        if self.alive:
+        if not self.collision:
             self.move()
             self.body.pop() # Remove a �ltima parte do corpo para simular movimento
 

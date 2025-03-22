@@ -1,9 +1,10 @@
 import pygame
-from pygame import Surface 
+from pygame.font import Font
+from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, C_GREEN, SNAKE_VELOCITY, PATH_BG_IMAGEM, BLOCK_SIZE, HUD
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE
 
 
 class Level:
@@ -23,10 +24,23 @@ class Level:
         pygame.mixer_music.load('./assets/audio/level_sound.wav')
         pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
         while True:
-            self.events()
-            self.to_update()
-            self.draw()
-            self.clock.tick(SNAKE_VELOCITY) # defini o fps do jogo
+
+            if self.snake.collision == False:
+                self.events()
+                self.to_update()
+                self.draw()
+                self.clock.tick(SNAKE_VELOCITY) # defini o fps do jogo
+            
+            else: 
+                break
+
+        self.window.blit(self.background, (0,0))
+
+        pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
+        pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
+        
+        self.score.update_best_score()
+        self.game_over()
 
     def events(self):
         for event in pygame.event.get():
@@ -52,14 +66,14 @@ class Level:
 
     
     def to_update (self):
-        if self.snake.alive:
+        if not self.snake.collision:
             self.snake.to_update_snake()
             
             # verifica colisão com a parede
             x, y = self.snake.body[0]
 
             if x >= WIN_WIDTH or x < 0 or  y >= WIN_HEIGHT or y < HUD['hud_height']:
-                self.snake.alive = False
+                self.snake.collision = True
                  
             self.snake.body[0] = [x,y]
 
@@ -71,9 +85,7 @@ class Level:
                 self.food.relocate()
                 self.snake.body.append(self.snake.body[-1])  # Cresce
         
-        else:
-            self.score.update_best_score()
-            self.reset()
+            #self.reset()
 
     def draw(self):
         self.window.blit(self.background, (0,0))
@@ -85,3 +97,26 @@ class Level:
     def obj_sound(self, path_sound):
         sound = pygame.mixer.Sound(path_sound)
         sound.play()
+
+    def game_over_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
+        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surf.get_rect(center=text_center_pos)
+        self.window.blit(source=text_surf, dest=text_rect)
+
+
+    def game_over(self):
+
+        while True:
+
+
+            tamanho_fonte_principal = 50
+            tamanho_fonte = 40
+            x = WIN_WIDTH / 2
+            y = WIN_HEIGHT / 2
+
+            self.game_over_text(tamanho_fonte_principal, "Game Over!", C_ORAGE, (x, y - tamanho_fonte_principal))
+            self.game_over_text(tamanho_fonte, f"Pontuação: {self.score.current_score}", C_ORAGE, (x, y))
+            self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score['best_score']}", C_ORAGE, (x, y + tamanho_fonte))
+            pygame.display.flip()
+        

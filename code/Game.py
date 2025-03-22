@@ -23,9 +23,3 @@ class Game():
                 print('SCORE: Ainda em desenvolvimento')    
             elif menu_return == MENU_OPTION[3]: #sai do jogo 
                 quit()
-
-    
-
-    
-
-            

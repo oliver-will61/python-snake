@@ -83,7 +83,11 @@ class Level:
                 self.obj_sound('./assets/audio/eat.wav') # som da pontuação 
                 self.score.current_score += 1
                 self.food.relocate()
-                self.snake.body.append(self.snake.body[-1])  # Cresce
+
+                # duplica o ultimo valor da body da cobra, fazendo ela crescer x2 mais
+                for _ in range(2):
+                    self.snake.body.append(self.snake.body[-1][:])   
+                print(self.snake.body)
         
             #self.reset()
 

@@ -16,6 +16,9 @@ MENU_OPTION = ("JOGAR",
                "Dificuldade",
                "SAIR",)
 
+GAME_OVER_OPTION = ("CONTINUAR",
+                    "VOLTAR PARA O MENU")
+
 C_ORAGE = (255, 128, 0)
 C_WHITE = (255, 255, 255)
 C_YELLOW = (255, 255, 0)

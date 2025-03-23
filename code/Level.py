@@ -4,7 +4,7 @@ from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE
 
 
 class Level:
@@ -38,7 +38,7 @@ class Level:
 
         pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
         pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
-        
+
         self.score.update_best_score()
         self.game_over()
 
@@ -107,9 +107,9 @@ class Level:
 
     def game_over(self):
 
+        game_over_option = 0
         while True:
-
-
+            
             tamanho_fonte_principal = 50
             tamanho_fonte = 40
             x = WIN_WIDTH / 2
@@ -119,4 +119,40 @@ class Level:
             self.game_over_text(tamanho_fonte, f"Pontuação: {self.score.current_score}", C_ORAGE, (x, y))
             self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score['best_score']}", C_ORAGE, (x, y + tamanho_fonte))
             pygame.display.flip()
-        
+
+            for i in range(len(GAME_OVER_OPTION)):
+                if i == game_over_option:
+                    self.game_over_text(40, GAME_OVER_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
+                else:
+                    self.game_over_text(40, GAME_OVER_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+
+            pygame.display.flip()
+
+            #checa os eventos
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_DOWN:
+                        game_over_option = (game_over_option + 1) % len(GAME_OVER_OPTION)  # Alterna entre opções
+
+                    if event.key == pygame.K_UP:
+                        game_over_option = (game_over_option - 1) % len(GAME_OVER_OPTION)  # Alterna para cima
+
+                    if event.key == pygame.K_RETURN:
+                        if game_over_option == 1:
+
+                            #self.window.blit(self.background, (0, 0))
+                            pygame.mixer_music.stop()  # faz a música parar
+                            self.window.fill((0,0,0))  #reseta a tela
+                            return # interope o metodo game_over()
+                        else:
+                            # reinicia o jogo
+                            self.reset()
+                            self.level_run()
+                            return
+
+            #pygame.display.flip()
+                    

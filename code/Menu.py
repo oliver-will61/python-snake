@@ -10,8 +10,9 @@ class Menu():
         self.window = window
 
     def run(self):
+        
         menu_option = 0
-
+        
         while True:
             self.menu_text(50, "Python Snake", C_ORAGE, ((WIN_WIDTH / 2), 120))
             pygame.display.flip()

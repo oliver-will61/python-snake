@@ -2,12 +2,14 @@ import pygame
 from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, C_BLACK
 from code.Menu import Menu
 from code.Level import Level
+from code.Difficulty import Difficulty
 
 
 class Game():
     def __init__(self):
         pygame.init()
         self.window = pygame.display.set_mode(size= (WIN_WIDTH, WIN_HEIGHT))
+        self.difficulty = Difficulty()
 
     def run(self):
         while True:
@@ -19,7 +21,8 @@ class Game():
                 level = Level(self.window)
                 level.level_run()
 
-            elif menu_return == MENU_OPTION[1]: #mostra o score 
-                print('SCORE: Ainda em desenvolvimento')    
-            elif menu_return == MENU_OPTION[3]: #sai do jogo 
+            elif menu_return == MENU_OPTION[1]: #dificuldade
+                self.difficulty.difficulty_selection = menu.menu_difficulty()
+                print(self.difficulty.difficulty_selection)
+            elif menu_return == MENU_OPTION[2]: #sai do jogo 
                 quit()

@@ -12,12 +12,13 @@ HUD = {
 BLOCK_SIZE = 20 # tamanho da cobra e da comida
 
 MENU_OPTION = ("JOGAR",
-               "Pontuação",
                "Dificuldade",
                "SAIR",)
 
 GAME_OVER_OPTION = ("CONTINUAR",
                     "VOLTAR PARA O MENU")
+
+DIFFICULTIES = ('FÁCIL', 'MÉDIO', 'DÍFICIL')
 
 C_ORAGE = (255, 128, 0)
 C_WHITE = (255, 255, 255)

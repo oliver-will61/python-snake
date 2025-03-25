@@ -1,12 +1,15 @@
-from code.Const import BLOCK_SIZE, C_GREEN, SNAKE_VELOCITY
+from code.Difficulty import Difficulty
+from code.Const import BLOCK_SIZE, C_GREEN
 import pygame
 
-class Snake:
+class Snake(Difficulty):
     def __init__(self):
+        super().__init__()
+
         self.body = [[100, 100]] #posição inicial da cobra
         self.direction = 'RIGHT'
         self.collision = False
-        self.velocity = SNAKE_VELOCITY
+        self.velocity = self.apply_Difficulty()
 
     def move(self):
         x, y = self.body[0]

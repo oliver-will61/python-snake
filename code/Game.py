@@ -1,5 +1,5 @@
 import pygame
-from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION, DIFFICULTIES
+from code.Const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
 from code.Menu import Menu
 from code.Level import Level
 from code.Difficulty import Difficulty
@@ -22,8 +22,8 @@ class Game():
                 level.level_run()
 
             elif menu_return == MENU_OPTION[1]: #dificuldade
-                self.difficulty.selected = menu.menu_difficulty()
-                self.difficulty.update_json(self.difficulty.path_data_json, self.difficulty.key_json, self.difficulty.selected ) # seta o valor selecionado no json
+                menu_return_difficulty = menu.menu_difficulty()
+                self.difficulty.update_json(self.difficulty.path_data_json, self.difficulty.key_json, menu_return_difficulty) # seta o valor selecionado no json
                 
             elif menu_return == MENU_OPTION[2]: #sai do jogo 
                 quit()

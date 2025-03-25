@@ -4,7 +4,8 @@ from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE, PATH_DATA_JSON, BLOCK_SIZE
+from code.Difficulty import Difficulty
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE, PATH_DATA_JSON
 
 
 class Level:
@@ -16,20 +17,24 @@ class Level:
         self.reset()
 
     def reset(self):
+
+        self.difficulty = Difficulty()
         self.snake = Snake()
         self.food = Food()
         self.score = Score()
+        
 
     def level_run(self):
         pygame.mixer_music.load('./assets/audio/level_sound.wav')
         pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
+
         while True:
 
             if self.snake.collision == False:
                 self.events()
                 self.to_update()
                 self.draw()
-                self.clock.tick(SNAKE_VELOCITY) # defini o fps do jogo
+                self.clock.tick(self.snake.velocity) # defini o fps do jogo
             
             else: 
                 break

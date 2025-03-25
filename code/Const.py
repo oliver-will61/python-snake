@@ -20,6 +20,12 @@ GAME_OVER_OPTION = ("CONTINUAR",
 
 DIFFICULTIES = ('FÁCIL', 'MÉDIO', 'DÍFICIL')
 
+SNAKE_VELOCITY = {
+   DIFFICULTIES[0]: 5, #fácil
+   DIFFICULTIES[1]: 10, #médio
+   DIFFICULTIES[2]: 20 #dificil
+}
+
 C_ORAGE = (255, 128, 0)
 C_WHITE = (255, 255, 255)
 C_YELLOW = (255, 255, 0)
@@ -27,7 +33,7 @@ C_GREEN = (0, 255, 0)
 C_RED = (255, 0, 0)
 C_BLACK = (0,0,0)
 
-SNAKE_VELOCITY = 10
+
 
 
 PATH_BG_IMAGEM = './assets/bg.jpg'

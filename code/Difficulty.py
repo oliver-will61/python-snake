@@ -1,25 +1,28 @@
 from code.Data_json import Data_Json
-from code.Const import DIFFICULTIES
+from code.Const import DIFFICULTIES, SNAKE_VELOCITY
 
 
 class Difficulty(Data_Json):
     def __init__(self):
         super().__init__()
-        self.selected = ''
         self.key_json = 'difficulty'
+        self.selected = self.load_json(self.path_data_json, self.key_json)
         
-        print(self.selected)
+        
 
-    def apply_Difficulty(self, snake_velocity):
+    def apply_Difficulty(self):
 
 
-        if self.difficulty.selected ==  DIFFICULTIES[0]: #fácil
-            snake_velocity = 5
+        if self.selected ==  DIFFICULTIES[0]: #fácil
+            snake_velocity = SNAKE_VELOCITY[DIFFICULTIES[0]]
+            return snake_velocity
 
-        elif self.difficulty.selected ==  DIFFICULTIES[1]: #médio
-            snake_velocity = 10
+        elif self.selected ==  DIFFICULTIES[1]: #médio
+            snake_velocity =  SNAKE_VELOCITY[DIFFICULTIES[1]]
+            return snake_velocity
 
-        elif self.difficulty.selected == DIFFICULTIES[2]: #dificil
-            snake_velocity = 20
+        elif self.selected == DIFFICULTIES[2]: #dificil
+            snake_velocity =  SNAKE_VELOCITY[DIFFICULTIES[2]]
+            return snake_velocity
 
 

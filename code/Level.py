@@ -42,7 +42,7 @@ class Level:
         self.game_over()
 
         #atualiza o arquivo json com a maior pontuação
-        if self.score.current_score > self.score.best_score['best_score']:
+        if self.score.current_score > self.score.best_score:
             self.score.update_json(PATH_DATA_JSON,'best_score',self.score.current_score) 
 
     def events(self):
@@ -124,7 +124,7 @@ class Level:
 
             self.game_over_text(tamanho_fonte_principal, "Game Over!", C_ORAGE, (x, y - tamanho_fonte_principal))
             self.game_over_text(tamanho_fonte, f"Pontuação: {self.score.current_score}", C_ORAGE, (x, y))
-            self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score['best_score']}", C_ORAGE, (x, y + tamanho_fonte))
+            self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score}", C_ORAGE, (x, y + tamanho_fonte))
             pygame.display.flip()
 
             for i in range(len(GAME_OVER_OPTION)):

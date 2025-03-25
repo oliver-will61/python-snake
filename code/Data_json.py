@@ -6,11 +6,11 @@ class Data_Json:
     
 
 
-    def load_json(self, path):
+    def load_json(self, path:str, key: str):
         try:
             with open(f'{path}', 'r', encoding='utf-8') as file:
                 data = json.load(file)
-                return data
+                return data[key]
         except (FileNotFoundError, json.JSONDecodeError): 
             print('Erro ao carregar o arquivo json_data')
 

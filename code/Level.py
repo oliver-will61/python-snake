@@ -34,16 +34,8 @@ class Level:
             else: 
                 break
 
-        self.window.blit(self.background, (0,0))
-
-        pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
-        pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
-
         self.game_over()
 
-        #atualiza o arquivo json com a maior pontuação
-        if self.score.current_score > self.score.best_score:
-            self.score.update_json(PATH_DATA_JSON,'best_score',self.score.current_score) 
 
     def events(self):
         for event in pygame.event.get():
@@ -113,6 +105,15 @@ class Level:
 
 
     def game_over(self):
+
+        self.window.blit(self.background, (0,0))
+
+        pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
+        pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
+
+        #atualiza o arquivo json com a maior pontuação
+        if self.score.current_score > self.score.best_score:
+            self.score.update_json(PATH_DATA_JSON,'best_score',self.score.current_score) 
 
         game_over_option = 0
         while True:

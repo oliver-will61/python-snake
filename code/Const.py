@@ -32,6 +32,6 @@ SNAKE_VELOCITY = 10
 
 PATH_BG_IMAGEM = './assets/bg.jpg'
 
-PATH_DATA_JSON = './best_score.json'
+PATH_DATA_JSON = './data.json'
 
 FONT_SIZE_SCORE = 28

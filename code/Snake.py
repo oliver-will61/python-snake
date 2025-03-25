@@ -1,4 +1,4 @@
-from code.Const import BLOCK_SIZE, C_GREEN
+from code.Const import BLOCK_SIZE, C_GREEN, SNAKE_VELOCITY
 import pygame
 
 class Snake:
@@ -6,6 +6,7 @@ class Snake:
         self.body = [[100, 100]] #posição inicial da cobra
         self.direction = 'RIGHT'
         self.collision = False
+        self.velocity = SNAKE_VELOCITY
 
     def move(self):
         x, y = self.body[0]

@@ -1,7 +1,10 @@
 import json
 
+from code.Const import PATH_DATA_JSON
+
 class Data_Json:
     def __init__(self):
+        self.path_data_json = PATH_DATA_JSON
         pass
     
 

@@ -8,7 +8,6 @@ class Difficulty(Data_Json):
         self.key_json = 'difficulty'
         self.selected = self.load_json(self.path_data_json, self.key_json)
         
-        
 
     def apply_Difficulty(self):
 

@@ -23,6 +23,6 @@ class Game():
 
             elif menu_return == MENU_OPTION[1]: #dificuldade
                 self.difficulty.difficulty_selection = menu.menu_difficulty()
-                print(self.difficulty.difficulty_selection)
+                
             elif menu_return == MENU_OPTION[2]: #sai do jogo 
                 quit()

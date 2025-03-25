@@ -4,7 +4,7 @@ from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE, PATH_DATA_JSON
 
 
 class Level:
@@ -39,8 +39,11 @@ class Level:
         pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
         pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
 
-        self.score.update_best_score()
         self.game_over()
+
+        #atualiza o arquivo json com a maior pontuação
+        if self.score.current_score > self.score.best_score['best_score']:
+            self.score.update_json(PATH_DATA_JSON,'best_score',self.score.current_score) 
 
     def events(self):
         for event in pygame.event.get():

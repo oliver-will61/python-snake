@@ -1,15 +1,17 @@
 import pygame
-import json
 from pygame import Rect, Surface
 from pygame.font import Font
-from code.Const import C_GREEN, HUD, FONT_SIZE_SCORE, C_BLACK, FONT_SIZE_SCORE
+from code.Const import C_GREEN, HUD, FONT_SIZE_SCORE, C_BLACK, FONT_SIZE_SCORE, PATH_DATA_JSON
+from code.Data_json import Data_Json
 
 
-class Score:
+class Score(Data_Json):
     def __init__(self):
+        super().__init__()
 
-        self.path_json_data = './best_score.json'
-        self.best_score = self.load_best_score_json()
+        #self.path_json_data = './best_score.json'
+        #self.best_score = self.load_best_score_json()
+        self.best_score = self.load_json(PATH_DATA_JSON)
         self.current_score = 0
         
     def score_hud(self, window):
@@ -30,24 +32,24 @@ class Score:
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
 
-    def load_best_score_json(self):
-        try:
-            with open(f'{self.path_json_data}', 'r', encoding='utf-8') as file:
-                data = json.load(file)
-                return data
-        except (FileNotFoundError, json.JSONDecodeError): 
-            print('Erro ao carregar o arquivo JSON')
+    # def load_best_score_json(self):
+    #     try:
+    #         with open(f'{self.path_json_data}', 'r', encoding='utf-8') as file:
+    #             data = json.load(file)
+    #             return data
+    #     except (FileNotFoundError, json.JSONDecodeError): 
+    #         print('Erro ao carregar o arquivo JSON')
 
-    def update_best_score(self):
-        if self.current_score > self.best_score['best_score']:
-            try:
-                with open(f'{self.path_json_data}', 'r', encoding='utf-8') as file:
-                    data = json.load(file)
-            except (FileNotFoundError, json.JSONDecodeError):
-                print('Erro ao carregar o arquivo JSON')
+    # def update_best_score(self):
+    #     if self.current_score > self.best_score['best_score']:
+    #         try:
+    #             with open(f'{self.path_json_data}', 'r', encoding='utf-8') as file:
+    #                 data = json.load(file)
+    #         except (FileNotFoundError, json.JSONDecodeError):
+    #             print('Erro ao carregar o arquivo JSON')
 
-            data['best_score'] = self.current_score
+    #         data['best_score'] = self.current_score
 
-            with open(f'{self.path_json_data}', 'w', encoding='utf-8') as file:
-                json.dump(data, file, indent=4) # Salva o JSON atualizado
+    #         with open(f'{self.path_json_data}', 'w', encoding='utf-8') as file:
+    #             json.dump(data, file, indent=4) # Salva o JSON atualizado
 

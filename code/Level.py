@@ -4,7 +4,7 @@ from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE, PATH_DATA_JSON
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, SNAKE_VELOCITY, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE, PATH_DATA_JSON, BLOCK_SIZE
 
 
 class Level:
@@ -67,7 +67,10 @@ class Level:
             # verifica colisão com a parede
             x, y = self.snake.body[0]
 
-            if x >= WIN_WIDTH or x < 0 or  y >= WIN_HEIGHT or y < HUD['hud_height']:
+            # if x >= WIN_WIDTH - BLOCK_SIZE or x < 0 + BLOCK_SIZE or  y >= WIN_HEIGHT - BLOCK_SIZE or y < HUD['hud_height'] +BLOCK_SIZE:
+            #     self.snake.collision = True
+
+            if x >= WIN_WIDTH  or x < 0  or  y >= WIN_HEIGHT  or y < HUD['hud_height']:
                 self.snake.collision = True
                  
             self.snake.body[0] = [x,y]
@@ -106,10 +109,8 @@ class Level:
 
     def game_over(self):
 
-        self.window.blit(self.background, (0,0))
-
         pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
-        pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
+        pygame.mixer_music.play() #'-1' faz a música tocar em loop infinito
 
         #atualiza o arquivo json com a maior pontuação
         if self.score.current_score > self.score.best_score:

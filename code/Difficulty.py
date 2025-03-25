@@ -12,7 +12,6 @@ class Difficulty(Data_Json):
 
     def apply_Difficulty(self):
 
-
         if self.selected ==  DIFFICULTIES[0]: #fácil
             snake_velocity = SNAKE_VELOCITY[DIFFICULTIES[0]]
             return snake_velocity

@@ -1,6 +1,6 @@
 import random
 import pygame
-from code.Const import WIN_WIDTH, BLOCK_SIZE, WIN_HEIGHT, C_RED, HUD
+from code.Const import WIN_WIDTH, BLOCK_SIZE, WIN_HEIGHT, C_RED, HUD, C_RED
 
 class Food:
     def __init__(self):

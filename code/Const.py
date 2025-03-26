@@ -26,12 +26,16 @@ SNAKE_VELOCITY = {
    DIFFICULTIES[2]: 20 #dificil
 }
 
+
+#paleta de cores
+
 C_ORAGE = (255, 128, 0)
 C_WHITE = (255, 255, 255)
-C_YELLOW = (255, 255, 0)
-C_GREEN = (0, 255, 0)
-C_RED = (255, 0, 0)
-C_BLACK = (0,0,0)
+C_GREEN = (143, 208, 83)
+C_BLACK = (26,26,26)
+C_YELLOW =  (255, 215, 0)
+C_RED =  (255, 0, 60) 
+C_RED_ALTERNATIVE = (193, 39, 45)
 
 
 

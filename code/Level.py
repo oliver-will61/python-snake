@@ -4,7 +4,7 @@ from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, PATH_BG_IMAGEM, HUD, C_ORAGE, GAME_OVER_OPTION, C_YELLOW, C_WHITE, PATH_DATA_JSON
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, PATH_BG_IMAGEM, HUD, C_BLACK, GAME_OVER_OPTION, C_YELLOW, PATH_DATA_JSON, C_RED, C_WHITE, C_RED_ALTERNATIVE
 
 
 class Level:
@@ -127,16 +127,16 @@ class Level:
             x = WIN_WIDTH / 2
             y = WIN_HEIGHT / 2
 
-            self.game_over_text(tamanho_fonte_principal, "Game Over!", C_ORAGE, (x, y - tamanho_fonte_principal))
-            self.game_over_text(tamanho_fonte, f"Pontuação: {self.score.current_score}", C_ORAGE, (x, y))
-            self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score}", C_ORAGE, (x, y + tamanho_fonte))
+            self.game_over_text(tamanho_fonte_principal, "Game Over!", C_RED_ALTERNATIVE, (x, y - tamanho_fonte_principal))
+            self.game_over_text(tamanho_fonte, f"Pontuação: {self.score.current_score}", C_BLACK, (x, y))
+            self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score}", C_BLACK, (x, y + tamanho_fonte))
             pygame.display.flip()
 
             for i in range(len(GAME_OVER_OPTION)):
                 if i == game_over_option:
-                    self.game_over_text(40, GAME_OVER_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
-                else:
                     self.game_over_text(40, GAME_OVER_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                else:
+                    self.game_over_text(40, GAME_OVER_OPTION[i], C_BLACK, ((WIN_WIDTH / 2), 200 + 25 * i))
 
             pygame.display.flip()
 
@@ -148,10 +148,10 @@ class Level:
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
-                        game_over_option = (game_over_option + 1) % len(GAME_OVER_OPTION)  # Alterna entre opções
+                        game_over_option = 1    #(game_over_option + 1) % len(GAME_OVER_OPTION)  # Alterna entre opções
 
                     if event.key == pygame.K_UP:
-                        game_over_option = (game_over_option - 1) % len(GAME_OVER_OPTION)  # Alterna para cima
+                        game_over_option =  0 #(game_over_option - 1) #% len(GAME_OVER_OPTION)  # Alterna para cima
 
                     if event.key == pygame.K_RETURN:
                         if game_over_option == 1:

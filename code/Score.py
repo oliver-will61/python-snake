@@ -1,7 +1,7 @@
 import pygame
 from pygame import Rect, Surface
 from pygame.font import Font
-from code.Const import C_GREEN, HUD, FONT_SIZE_SCORE, C_BLACK, FONT_SIZE_SCORE, PATH_DATA_JSON
+from code.Const import HUD, FONT_SIZE_SCORE, C_WHITE, FONT_SIZE_SCORE, PATH_DATA_JSON, C_BLACK
 from code.Data_json import Data_Json
 
 
@@ -17,14 +17,14 @@ class Score(Data_Json):
     def score_hud(self, window):
             self.window = window
             #desenha retangulo que vai ser usado como hud
-            pygame.draw.rect(window, C_GREEN, (HUD['hud_x'],HUD['hud_y'], HUD['hud_width'], HUD['hud_height']))
+            pygame.draw.rect(window, C_BLACK, (HUD['hud_x'],HUD['hud_y'], HUD['hud_width'], HUD['hud_height']))
 
             center_y = (HUD['hud_height']/2) - (FONT_SIZE_SCORE / 2)
             margin_left = 20
             margin_top = 10
             margin_botton = 17
-            self.score_text(FONT_SIZE_SCORE, f'Pontuação: {self.current_score} ', C_BLACK, (margin_left,center_y - margin_top))
-            self.score_text(FONT_SIZE_SCORE, f'Melhor Pontuação: {self.best_score}', C_BLACK, (margin_left,center_y + margin_botton))
+            self.score_text(FONT_SIZE_SCORE, f'Pontuação: {self.current_score} ', C_WHITE, (margin_left,center_y - margin_top))
+            self.score_text(FONT_SIZE_SCORE, f'Melhor Pontuação: {self.best_score}', C_WHITE, (margin_left,center_y + margin_botton))
 
     def score_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)

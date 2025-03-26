@@ -1,5 +1,5 @@
 from code.Difficulty import Difficulty
-from code.Const import BLOCK_SIZE, C_GREEN
+from code.Const import BLOCK_SIZE, C_GREEN, C_YELLOW
 import pygame
 
 class Snake(Difficulty):
@@ -47,4 +47,4 @@ class Snake(Difficulty):
 
     def draw_snake(self, windown):
         for block in self.body:
-            pygame.draw.rect(windown, C_GREEN, (*block, BLOCK_SIZE, BLOCK_SIZE)) #*block desempacota a tupla block
+            pygame.draw.rect(windown, C_YELLOW, (*block, BLOCK_SIZE, BLOCK_SIZE)) #*block desempacota a tupla block

@@ -4,7 +4,7 @@ from pygame import Surface, Rect
 from code.Snake import Snake
 from code.Food import Food
 from code.Score import Score
-from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, PATH_BG_IMAGEM, HUD, C_BLACK, GAME_OVER_OPTION, C_YELLOW, PATH_DATA_JSON, C_RED, C_WHITE, C_RED_ALTERNATIVE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, HUD, PATH_BG_IMAGEM, HUD, C_BLACK, GAME_OVER_OPTION, C_YELLOW, PATH_DATA_JSON, C_RED, C_WHITE, C_RED_ALTERNATIVE, BLOCK_SIZE
 
 
 class Level:
@@ -73,7 +73,7 @@ class Level:
             # if x >= WIN_WIDTH - BLOCK_SIZE or x < 0 + BLOCK_SIZE or  y >= WIN_HEIGHT - BLOCK_SIZE or y < HUD['hud_height'] +BLOCK_SIZE:
             #     self.snake.collision = True
 
-            if x >= WIN_WIDTH  or x < 0  or  y >= WIN_HEIGHT  or y < HUD['hud_height']:
+            if x >= WIN_WIDTH  or x < 0  or  y >= WIN_HEIGHT  or y - BLOCK_SIZE < HUD['hud_height']:
                 self.snake.collision = True
                  
             self.snake.body[0] = [x,y]
@@ -127,7 +127,7 @@ class Level:
             x = WIN_WIDTH / 2
             y = WIN_HEIGHT / 2
 
-            self.game_over_text(tamanho_fonte_principal, "Game Over!", C_RED_ALTERNATIVE, (x, y - tamanho_fonte_principal))
+            self.game_over_text(tamanho_fonte_principal, "GAME OVER!", C_RED_ALTERNATIVE, (x, y - tamanho_fonte_principal))
             self.game_over_text(tamanho_fonte, f"Pontuação: {self.score.current_score}", C_BLACK, (x, y))
             self.game_over_text(tamanho_fonte, f"Recorde: {self.score.best_score}", C_BLACK, (x, y + tamanho_fonte))
             pygame.display.flip()

@@ -73,7 +73,7 @@ class Level:
             # if x >= WIN_WIDTH - BLOCK_SIZE or x < 0 + BLOCK_SIZE or  y >= WIN_HEIGHT - BLOCK_SIZE or y < HUD['hud_height'] +BLOCK_SIZE:
             #     self.snake.collision = True
 
-            if x >= WIN_WIDTH  or x < 0  or  y >= WIN_HEIGHT  or y - BLOCK_SIZE < HUD['hud_height']:
+            if x >= WIN_WIDTH  or x < 0  or  y >= WIN_HEIGHT  or y  < HUD['hud_height']:
                 self.snake.collision = True
                  
             self.snake.body[0] = [x,y]

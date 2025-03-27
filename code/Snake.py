@@ -1,5 +1,5 @@
 from code.Difficulty import Difficulty
-from code.Const import BLOCK_SIZE, C_GREEN, C_YELLOW
+from code.Const import BLOCK_SIZE, C_GREEN, C_YELLOW, HUD, WIN_WIDTH, WIN_HEIGHT
 import pygame
 
 class Snake(Difficulty):
@@ -10,6 +10,7 @@ class Snake(Difficulty):
         self.direction = 'RIGHT'
         self.collision = False
         self.velocity = self.apply_Difficulty()
+        self.color = C_YELLOW
 
     def move(self):
         x, y = self.body[0]
@@ -46,5 +47,14 @@ class Snake(Difficulty):
             self.direction = direction
 
     def draw_snake(self, windown):
+
+        hud_height = HUD['hud_height']  # Altura do HUD
+        
+        # Define a área onde a cobra pode ser desenhada
+        clip_rect = pygame.Rect(0, hud_height, WIN_WIDTH, WIN_HEIGHT - hud_height)
+        windown.set_clip(clip_rect)  # Aplica o recorte
+        
         for block in self.body:
-            pygame.draw.rect(windown, C_YELLOW, (*block, BLOCK_SIZE, BLOCK_SIZE)) #*block desempacota a tupla block
+            pygame.draw.rect(windown, self.color, (*block, BLOCK_SIZE, BLOCK_SIZE))
+        
+        windown.set_clip(None)  # Remove o recorte

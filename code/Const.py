@@ -39,7 +39,7 @@ C_RED_ALTERNATIVE = (193, 39, 45)
 
 
 MENU_COLORS = {
-    "h1": C_ORAGE,
+    "h1": C_YELLOW,
     "text": C_BLACK,
     "select_text": C_WHITE
 }
@@ -48,7 +48,7 @@ MENU_COLORS = {
 
 
 PATH_BG_IMAGEM = './assets/bg.jpg'
-PATH_BG_IMAGEM_MENU = './assets/bg_menu.jpg'
+PATH_BG_IMAGEM_MENU = './assets/snake_bg.jpg'
 
 PATH_DATA_JSON = './data.json'
 

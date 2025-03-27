@@ -12,6 +12,10 @@ class Game():
         self.difficulty = Difficulty()
 
     def run(self):
+
+        pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
+        pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
+        
         while True:
             menu = Menu(self.window)
             menu_return = menu.run()

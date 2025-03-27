@@ -2,7 +2,7 @@ from pygame.font import Font
 from pygame import Surface
 from pygame import Rect
 import pygame
-from code.Const import C_ORAGE, WIN_WIDTH, MENU_OPTION, C_YELLOW, C_WHITE, DIFFICULTIES
+from code.Const import C_ORAGE, WIN_WIDTH, MENU_OPTION, C_YELLOW, C_WHITE, DIFFICULTIES, PATH_BG_IMAGEM_MENU, WIN_HEIGHT
 
 
 
@@ -10,11 +10,16 @@ from code.Const import C_ORAGE, WIN_WIDTH, MENU_OPTION, C_YELLOW, C_WHITE, DIFFI
 class Menu():
     def __init__(self, window):
         self.window = window
+        self.bg_imagem = pygame.image.load(PATH_BG_IMAGEM_MENU).convert_alpha() #carega a imagem
+        self.background = pygame.transform.scale(self.bg_imagem, (WIN_WIDTH, WIN_HEIGHT))  # Ajusta a imagem ao tamanho da tela
 
         
 
     def run(self):
         self.window.fill((0,0,0))  #reseta a tela
+        self.window.blit(self.background, (0,0))
+
+
         menu_option = 0
         
         while True:
@@ -66,6 +71,8 @@ class Menu():
     def menu_difficulty(self):
         
         self.window.fill((0,0,0))  #reseta a tela
+        self.window.blit(self.background, (0,0))
+
         menu_option = 0
 
     

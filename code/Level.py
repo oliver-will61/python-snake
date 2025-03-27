@@ -158,6 +158,8 @@ class Level:
 
                             #self.window.blit(self.background, (0, 0))
                             pygame.mixer_music.stop()  # faz a música parar
+                            pygame.mixer_music.load('./assets/audio/level_sound_end.wav')
+                            pygame.mixer_music.play(-1) #'-1' faz a música tocar em loop infinito
                             self.window.fill((0,0,0))  #reseta a tela
                             return # interope o metodo game_over()
                         else:

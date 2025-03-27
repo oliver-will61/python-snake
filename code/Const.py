@@ -41,6 +41,7 @@ C_RED_ALTERNATIVE = (193, 39, 45)
 
 
 PATH_BG_IMAGEM = './assets/bg.jpg'
+PATH_BG_IMAGEM_MENU = './assets/bg_menu.jpg'
 
 PATH_DATA_JSON = './data.json'
 

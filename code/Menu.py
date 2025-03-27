@@ -2,7 +2,7 @@ from pygame.font import Font
 from pygame import Surface
 from pygame import Rect
 import pygame
-from code.Const import C_ORAGE, WIN_WIDTH, MENU_OPTION, C_YELLOW, C_WHITE, DIFFICULTIES, PATH_BG_IMAGEM_MENU, WIN_HEIGHT
+from code.Const import C_ORAGE, WIN_WIDTH, MENU_OPTION, C_WHITE, DIFFICULTIES, PATH_BG_IMAGEM_MENU, WIN_HEIGHT, C_BLACK, C_YELLOW, MENU_COLORS
 
 
 
@@ -23,15 +23,15 @@ class Menu():
         menu_option = 0
         
         while True:
-            self.menu_text(50, "Python Snake", C_ORAGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(50, "Python Snake", MENU_COLORS['h1'], ((WIN_WIDTH / 2), 120))
             pygame.display.flip()
 
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(40, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(40, MENU_OPTION[i], MENU_COLORS['select_text'], ((WIN_WIDTH / 2), 200 + 25 * i))
                 else:
-                    self.menu_text(40, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(40, MENU_OPTION[i], MENU_COLORS['text'], ((WIN_WIDTH / 2), 200 + 25 * i))
 
 
             #checa os eventos
@@ -77,15 +77,15 @@ class Menu():
 
     
         while True:
-            self.menu_text(50, "Selecione a Dificuldade", C_ORAGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(50, "Selecione a Dificuldade", MENU_COLORS['h1'], ((WIN_WIDTH / 2), 120))
             pygame.display.flip()
 
 
             for i in range(len(DIFFICULTIES)):
                 if i == menu_option:
-                    self.menu_text(40, DIFFICULTIES[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(40, DIFFICULTIES[i], MENU_COLORS['select_text'], ((WIN_WIDTH / 2), 200 + 25 * i))
                 else:
-                    self.menu_text(40, DIFFICULTIES[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(40, DIFFICULTIES[i], MENU_COLORS['text'], ((WIN_WIDTH / 2), 200 + 25 * i))
 
 
             #checa os eventos

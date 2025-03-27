@@ -12,7 +12,7 @@ HUD = {
 BLOCK_SIZE = 20 # tamanho da cobra e da comida
 
 MENU_OPTION = ("JOGAR",
-               "Dificuldade",
+               "DIFICULDADE",
                "SAIR",)
 
 GAME_OVER_OPTION = ("CONTINUAR",
@@ -36,6 +36,13 @@ C_BLACK = (26,26,26)
 C_YELLOW =  (255, 215, 0)
 C_RED =  (255, 0, 60) 
 C_RED_ALTERNATIVE = (193, 39, 45)
+
+
+MENU_COLORS = {
+    "h1": C_ORAGE,
+    "text": C_BLACK,
+    "select_text": C_WHITE
+}
 
 
 
